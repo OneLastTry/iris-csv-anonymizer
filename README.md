@@ -27,7 +27,7 @@ After processing.
 Recommended in case you just want to get the application up and running.
 
 ```bash
-docker run --publish 9091:1972 --publish 9092:52773 rlourenc/iris-csv-anonymizer:1.0
+docker run --name anonymizer --publish 9091:1972 --publish 9092:52773 rlourenc/iris-csv-anonymizer:1.0
 ```
 
 ### Option 2
