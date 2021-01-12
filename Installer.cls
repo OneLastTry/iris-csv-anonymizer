@@ -40,7 +40,7 @@ ClassMethod Install(path As %String) As %Status
         set sc = $$$ADDSC(sc,..Installer(.args))
 
         set csp = ##class(Security.Applications).%New()
-        set csp.Description = "Anonymizater Application"
+        set csp.Description = "CSV Anonymizer Application"
         set csp.Enabled = 1
         set csp.Name = "/appl"
         set csp.NameSpace = "APPL"
