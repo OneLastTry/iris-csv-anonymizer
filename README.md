@@ -7,12 +7,15 @@ Tiny web application that allows you to anonymize CSV files. Based on [InterSyst
 ## Application
 
 Sample CSV where Date of Birth and Sex will remain untouched, while the rest should be anonymized.
+
 ![before](assets/before.png)
 
 The application recognizes the header columns and allows the user to chose which ones to ignore.
+
 ![demo](assets/demo.gif)
 
 After processing.
+
 ![after](assets/after.png)
 
 ## Setup
