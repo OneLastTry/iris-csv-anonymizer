@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  anonymizer:
+    image: csv-anonymizer:1.0
+    init: true
+    build:
+      context: .
+    hostname: anonymizer
+    container_name: anonymizer
+    ports:
+    - "9091:51773"
+    - "9092:52773"
+    restart: on-failure
+    volumes:
+    - type: bind
+      source: ./src
+      target: /src
