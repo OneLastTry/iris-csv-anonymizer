@@ -11,9 +11,9 @@ ClassMethod CheckColumns(filename As %String = "", ByRef sc As %Status) As %Dyna
     try {
         set file = ##class(%File).%New(filename)
         do file.Open("RS")
-        set header = file.ReadLine()
+        set header = $ZCONVERT(file.ReadLine(),"I","UTF8")
         kill file
-
+        set ^zrenan = header
         set headerList = $$CSVtoList^%occLibrary(header)
 
         set col = ""
@@ -62,7 +62,7 @@ ClassMethod AnonymizeJob(filename As %String = "", ignore As %String = "", job A
         do file.Open("RS")
         set header = 1
         while 'file.AtEnd {
-            set line = file.ReadLine()
+            set line = $ZCONVERT(file.ReadLine(),"I","UTF8")
             set lineList = $$CSVtoList^%occLibrary(line)
             set it = 0
             set value = ""
