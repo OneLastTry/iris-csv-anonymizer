@@ -1,4 +1,4 @@
-ARG IMAGE=store/intersystems/iris-community:2020.3.0.221.0
+ARG IMAGE=store/intersystems/iris-community:2021.1.0.215.3
 FROM $IMAGE
 
 LABEL maintainer="Renan Lourenco <renan.lourenco@intersystems.com>"
