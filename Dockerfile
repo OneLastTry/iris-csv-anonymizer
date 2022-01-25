@@ -8,7 +8,7 @@ ENV IRIS_PASSWORD="SYS"
 ENV IRIS_PROJECT="/src/"
 
 # setting the date of the image. modify it as required
-#ENV TZ="Asia/Dubai"
+#ENV TZ="America/New_York"
 #USER root
 #RUN apt-get update && \
 #    apt-get install -y tzdata && \
