@@ -1,4 +1,4 @@
-ARG IMAGE=store/intersystems/iris-community:2021.1.0.215.3
+ARG IMAGE=containers.intersystems.com/intersystems/irishealth-community:2022.2.0.281.0
 FROM $IMAGE
 
 LABEL maintainer="Renan Lourenco <renan.lourenco@intersystems.com>"
@@ -7,25 +7,16 @@ ENV IRIS_USERNAME="SuperUser"
 ENV IRIS_PASSWORD="SYS"
 ENV IRIS_PROJECT="/src/"
 
-# setting the date of the image. modify it as required
-#ENV TZ="America/New_York"
-#USER root
-#RUN apt-get update && \
-#    apt-get install -y tzdata && \
-#    echo $TZ > /etc/timezone && \
-#    dpkg-reconfigure -f noninteractive tzdata
-
-ENV user "irisowner"
-USER irisowner
+USER ${ISC_PACKAGE_MGRUSER}
 COPY ./Installer.cls /tmp/Installer.cls
 COPY ./src/Anonymizer /tmp/src/Anonymizer
 COPY ./scripts/irissession.sh /tmp/irissession.sh
 USER root
 RUN chmod 775 /tmp/irissession.sh
 RUN chmod +x /tmp/irissession.sh
-RUN chown irisowner:irisuser /tmp/irissession.sh
+RUN chown ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /tmp/irissession.sh
 RUN sed -i -e 's/\r$//' /tmp/irissession.sh
-USER irisowner
+USER ${ISC_PACKAGE_MGRUSER}
 RUN echo "$IRIS_PASSWORD" >> /tmp/pwd.isc && /usr/irissys/dev/Container/changePassword.sh /tmp/pwd.isc
 
 SHELL ["/tmp/irissession.sh"]
