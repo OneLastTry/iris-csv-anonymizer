@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   anonymizer:
-    image: csv-anonymizer:1.0
+    image: intersystems/demo/irishealth/csv-anonymizer:latest
     init: true
     build:
       context: .
