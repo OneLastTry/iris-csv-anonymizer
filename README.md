@@ -2,8 +2,6 @@
 
 Tiny web application that allows you to anonymize CSV files. Based on [InterSystems IRIS®](https://www.intersystems.com/products/intersystems-iris)
 
-**Version:** _store/intersystems/iris-community:2020.3.0.221.0_
-
 ## Application
 
 Sample CSV where Date of Birth and Sex will remain untouched, while the rest should be anonymized.
