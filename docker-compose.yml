@@ -5,8 +5,6 @@ services:
     init: true
     build:
       context: .
-      args:
-        ARCH: $ARCH
     hostname: anonymizer
     container_name: anonymizer
     ports:

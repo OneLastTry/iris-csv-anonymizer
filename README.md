@@ -21,7 +21,6 @@ After processing.
 **Make sure you have Docker up and running before starting.**
 
 Clone the repo `git clone https://github.com/OneLastTry/iris-csv-anonymizer.git` and then execute from the main directory `docker-compose build`.
-_(for arm64 run `docker-compose --env-file=.env-arm64 build`)_
 
 ## Execution
 
