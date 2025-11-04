@@ -1,6 +1,6 @@
 ARG ARCH
-ARG IMAGE=rlourenc/irishealth-community:latest
-FROM $IMAGE AS Builder
+ARG IMAGE=containers.intersystems.com/intersystems/irishealth-community:latest-cd
+FROM $IMAGE AS builder
 
 LABEL maintainer="Renan Lourenco <renan.lourenco@intersystems.com>"
 
@@ -31,14 +31,14 @@ CMD [ "-l", "/usr/irissys/mgr/messages.log" ]
 HEALTHCHECK --interval=5s CMD /irisHealth.sh || exit 1
 
 # 2nd stage to reduce size
-FROM $IMAGE AS Main
-LABEL maintainer "Renan Lourenço <renan.lourenco@intersystems.com>"
+FROM $IMAGE AS main
+LABEL maintainer="Renan Lourenço <renan.lourenco@intersystems.com>"
 USER root
 # replace in standard kit with what we modified in first stage
-COPY --from=Builder /usr/irissys/iris.cpf /usr/irissys/.
-COPY --from=Builder /usr/irissys/mgr/IRIS.DAT /usr/irissys/mgr/.
-COPY --from=Builder /usr/irissys/mgr/hssys/IRIS.DAT /usr/irissys/mgr/hssys/.
-COPY --from=Builder /usr/irissys/mgr/appl/. /usr/irissys/mgr/appl/.
+COPY --from=builder /usr/irissys/iris.cpf /usr/irissys/.
+COPY --from=builder /usr/irissys/mgr/IRIS.DAT /usr/irissys/mgr/.
+COPY --from=builder /usr/irissys/mgr/hssys/IRIS.DAT /usr/irissys/mgr/hssys/.
+COPY --from=builder /usr/irissys/mgr/appl/. /usr/irissys/mgr/appl/.
 # need to reset ownership for files copied
 RUN \
   chown -R ${ISC_PACKAGE_MGRUSER}:${ISC_PACKAGE_IRISGROUP} /usr/irissys/iris.cpf \
